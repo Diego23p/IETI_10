@@ -1,0 +1,16 @@
+{
+  "name": "Taks Planner",
+  "icons": [
+    {
+      "src": "logoTask.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    }
+  ],
+  "short_name": "PlannerApp",
+  "theme_color": "#71c0ff",
+  "background_color": "#0d4b7c",
+  "display": "browser",
+  "scope": "/",
+  "start_url": "/"
+}

@@ -1,0 +1,4 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://diego:millonarios@ieti.lwg51.mongodb.net/IETI?retryWrites=true&w=majority
