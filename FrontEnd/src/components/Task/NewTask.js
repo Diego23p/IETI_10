@@ -25,6 +25,7 @@ export class NewTask extends React.Component{
     this.handleDueDateChange = this.handleDueDateChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmitTodo = this.handleSubmitTodo.bind(this);
 }
 
   handleDescriptionChange(e) {
@@ -59,6 +60,7 @@ export class NewTask extends React.Component{
 
   handleSubmit(e) {
     e.preventDefault();
+    this.handleSubmitTodo(e);
 
     let data = new FormData();
     data.append('file', this.state.file);
@@ -69,6 +71,32 @@ export class NewTask extends React.Component{
       })
       .catch(function (error) {
         console.log("failed file upload", error);
+      });
+  }
+
+  handleSubmitTodo(e) {
+    e.preventDefault();
+
+    var data = {
+      "description": this.state.description,
+      "responsible":  this.state.responsible,
+      "status" :this.state.status,
+      "imageURL": this.state.file.name,
+      "dueDate" : this.state.dueDate
+    };
+
+    fetch('http://localhost:8080/api/todo', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(function (response) {
+        console.log("Todo uploaded!", response.data);
+      })
+      .catch(function (error) {
+        console.log("failed Todo upload", error);
       });
   }
 

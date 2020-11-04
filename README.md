@@ -88,3 +88,45 @@ Documento dentro de la colección:
 
 ![](/img/4.jpg)
 
+## Parte 3: actualiza tu Todo para aceptar archivos
+
+
+### Adicionar archivo de imagen
+
+Datos de entrada:
+
+![](/img/5.jpg)
+
+Resultados de la adición:
+
+![](/img/6.jpg)
+
+Nuevo Todo en la base de datos:
+
+![](/img/7.jpg)
+
+Nueva imagen en la base de datos:
+
+![](/img/8.jpg)
+
+### Adicionar archivo PDF
+
+Datos de entrada:
+
+![](/img/9.jpg)
+
+Resultados de la adición:
+
+![](/img/10.jpg)
+
+Dando click en el botón, se abre una nueva pestaña la cual ofrece la opción de descargarlo:
+
+![](/img/11.jpg)
+
+Nuevo Todo en la base de datos:
+
+![](/img/12.jpg)
+
+Nueva imagen en la base de datos:
+
+![](/img/13.jpg)

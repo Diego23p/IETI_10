@@ -37,3 +37,10 @@ Button.submit {
     background: rgb(57, 43, 187);
     color: rgb(255, 255, 255);
 }
+
+Button.submitt {
+    width: 250px;
+    border-radius: 65px;
+    background: rgb(22, 187, 30);
+    color: rgb(255, 255, 255);
+}

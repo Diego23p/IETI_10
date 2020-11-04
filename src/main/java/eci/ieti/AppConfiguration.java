@@ -1,5 +1,6 @@
 package eci.ieti;
 
+import com.mongodb.MongoClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,14 +18,16 @@ public class AppConfiguration {
 	private String connectionString;
 
     @Bean
-	public MongoDbFactory mongoDbFactory() throws Exception {
+    public MongoDbFactory mongoDbFactory() throws Exception {
 
-		// Create URI
-		MongoClientURI mongoClientUri = new MongoClientURI(connectionString);
+        MongoClientURI uri = new MongoClientURI(
+                "mongodb+srv://diego:millonarios@ieti.lwg51.mongodb.net/IETI?retryWrites=true&w=majority");
 
-		// Create DB factory
-		return new SimpleMongoDbFactory(mongoClientUri);
-	}
+        MongoClient mongoClient = new MongoClient(uri);
+
+        return new SimpleMongoDbFactory( mongoClient, "IETI");
+
+    }
 
     @Bean
     public MongoTemplate mongoTemplate() throws Exception {

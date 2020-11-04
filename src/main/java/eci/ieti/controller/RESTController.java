@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 @RequestMapping("api")
@@ -62,8 +63,12 @@ public class RESTController {
     @CrossOrigin("*")
     @PostMapping("/todo")
     public Todo createTodo(@RequestBody Todo todo) {
-        //TODO implement method
-        return null;
+
+        Todo newTodo = new Todo(todo.getDescription(),5, todo.getDueDate(),todo.getResponsible(),todo.getStatus(),"http://localhost:8080/api/files/"+todo.getImageURL());
+
+        todoRepository.save(newTodo);
+
+        return newTodo;
     }
 
     @CrossOrigin("*")
@@ -72,6 +77,12 @@ public class RESTController {
 
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfiguration.class);
         MongoOperations mongoOperation = (MongoOperations) applicationContext.getBean("mongoTemplate");
+        /*
+        todoRepository.deleteAll();
+
+        todoRepository.save(new Todo("travel to Galapagos",10, new Date(System.currentTimeMillis()+1000000000),"charles@natural.com","pending","http://localhost:8080/api/files/galapagos.jpg"));
+        todoRepository.save(new Todo("travel to Malvinas",4,new Date(System.currentTimeMillis()-1000000000),"charles@natural.com","pending","http://localhost:8080/api/files/malvinas.jpg"));
+        */
 
         Query query = new Query();
         List<Todo> todos = mongoOperation.find(query, Todo.class);

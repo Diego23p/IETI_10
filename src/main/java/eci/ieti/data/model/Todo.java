@@ -1,30 +1,41 @@
 package eci.ieti.data.model;
 
+import org.springframework.data.annotation.Id;
+
 import java.util.Date;
 
+/**
+ *
+ * @author Diego23p
+ */
 public class Todo {
+    @Id
+    private String id;
 
-    private String description;
-
-    private int priority;
+    private String description,  responsible, status, imageURL;
 
     private Date dueDate;
 
-    private User responsible;
-
-    private String status;
-
-    private String fileUrl;
-
+    private int priority;
 
     public Todo() {
     }
 
-    public Todo(String description,Date dueDate, User responsible) {
+    public Todo(String description, int priority, Date dueDate, String responsible, String status, String imageURL) {
         this.description = description;
-        this.priority = 5;
+        this.priority = priority;
         this.dueDate = dueDate;
         this.responsible = responsible;
+        this.status = status;
+        this.imageURL = imageURL;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getDescription() {
@@ -51,11 +62,11 @@ public class Todo {
         this.dueDate = dueDate;
     }
 
-    public User getResponsible() {
+    public String getResponsible() {
         return responsible;
     }
 
-    public void setResponsible(User responsible) {
+    public void setResponsible(String responsible) {
         this.responsible = responsible;
     }
 
@@ -67,20 +78,18 @@ public class Todo {
         this.status = status;
     }
 
-    public String getFileUrl() {
-        return fileUrl;
+    public String getImageURL() {
+        return imageURL;
     }
 
-    public void setFileUrl(String fileUrl) {
-        this.fileUrl = fileUrl;
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
     @Override
     public String toString() {
-        return "Todo{" +
-                "description='" + description + '\'' +
-                ", dueDate=" + dueDate +
-                ", responsible=" + responsible +
-                '}';
+        return "Todo{" + "id=" + id + ", description=" + description + ", priority=" + priority + ", dueDate=" + dueDate + ", responsible=" + responsible + ", status=" + status + "URL="+ imageURL + '}';
     }
+
+
 }

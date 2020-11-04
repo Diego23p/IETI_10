@@ -105,6 +105,7 @@ export default function PersistentDrawerLeft() {
   };
 
     const handleOpenModal = () => {
+      componentDidMount();
       setOpenModal(true);
     };
 
@@ -131,30 +132,17 @@ export default function PersistentDrawerLeft() {
     const [TaskList,setTaskList] = React.useState([
       {
         "description": "Hacer la DBBBB",
-        "responsible": {
-          "name": "Catalina",
-          "email": "Catalina@gmail"
-        },
+        "responsible": "Catalina",
         "status": "Ready",
-        "dueDate": 1600931924221
+        "dueDate": 1600931924221,
+        "imageURL": ""
       },
       {
         "description": "Implementar FrontEnd",
-        "responsible": {
-          "name": "Catalina",
-          "email": "catalina@gmail"
-        },
+        "responsible": "Catalina",
         "status": "Done",
-        "dueDate": 1609031924221
-      },
-      {
-        "description": "Implementar BackEnd",
-        "responsible": {
-          "name": "Juan",
-          "email": "Juan@gmail"
-        },
-        "status": "In Progress",
-        "dueDate": 1600031924221
+        "dueDate": 1609031924221,
+        "imageURL":""
       }
     ]);
 
@@ -173,46 +161,29 @@ export default function PersistentDrawerLeft() {
       }
     ]);
 
-    const addTask = (task)=>{
-      componentDidMount(task);
+    const addTask = ()=>{
       setOpenModal(false);
     }
 
-    const componentDidMount =(task) => {
+    const componentDidMount = () => {
 
-      var dataa = {
-        "description":task.description,
-          "responsible":{
-            "name": task.responsible.name
-          },
-          "status":task.status,
-          "dueDate":task.dueDate
-    };
-
-      fetch('https://taskpost.azurewebsites.net/api/add-task?code=b5DsMP3z9Rj/lYuySTVy2YKPeRX48/JxWx9oPba6VnJZtrNY2LE5BQ==', {
-          method: 'POST',
-          body: JSON.stringify(dataa),
-          headers:{
-            'Content-Type': 'application/json'
-          }
-        }      
-      )
+      fetch('http://localhost:8080/api/todo')
           .then(response => response.json())
           .then(data => {
               let usersList = [];
               data.map((user) => {
                   usersList.push({
                     "description":user.description,
-                    "responsible":{
-                      "name": user.responsible.name
-                    },
+                    "responsible":user.responsible,
                     "status":user.status,
-                    "dueDate":user.dueDate
+                    "dueDate":user.dueDate,
+                    "imageURL":user.imageURL
                   })
                });
                setTaskList(usersList);
           });
-  }
+
+    }
 
     const setUser = (user)=>{
       Usuario.pop();

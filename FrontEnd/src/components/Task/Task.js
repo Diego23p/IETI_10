@@ -2,7 +2,10 @@ import React from 'react';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
-import AssignmentRoundedIcon from '@material-ui/icons/AssignmentRounded';
+import Button from '@material-ui/core/Button';
+
+import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
+
 import "./task.css";
 
 export class Task extends React.Component {
@@ -10,6 +13,13 @@ export class Task extends React.Component {
     constructor(props) {
         super(props);
     }
+
+    Open(e, url) {
+        
+        e.preventDefault();
+        window.open(url, "_blank");
+    
+      }
 
     render() {          
         const bull = <span className="bullet">•</span>;
@@ -33,18 +43,37 @@ export class Task extends React.Component {
             var e = date_format_str == date_format_str2;
             var f = this.props.filter[0].dueDate == "";
 
+            var URLTemp = task.imageURL;
+
             if ( (a | b) & (c|q) & (e|f) ) {
 
             return (
                 <Card className="root">
                     <CardContent>
-                        <AssignmentRoundedIcon/>
+
+                        <Typography variant="body2" component="p">
+                            {URLTemp.substr(-3,3) === "pdf" ? 
+                                <Button
+                                    type="submit"
+                                    fullWidth
+                                    variant="contained"
+                                    className="submitt"
+                                    onClick={(e) => this.Open(e,task.imageURL)} 
+                                    >
+                                    <PictureAsPdfIcon/>
+                                    Open new PDF tap file
+                                </Button>
+                            : <img src={task.imageURL} />}
+                        </Typography>
+
+                        
+
                         <Typography variant="h5" gutterBottom>
                             {task.description}
                         </Typography>
 
                         <Typography className="title" component="h2">
-                            User: {task.responsible.name}
+                            User: {task.responsible}
                         </Typography>
 
                         <Typography className="pos" color="textSecondary">
@@ -52,7 +81,7 @@ export class Task extends React.Component {
                         </Typography>
 
                         <Typography variant="body2" component="p">
-                            Date: {date_format_str}
+                            Date: {task.dueDate}
                         </Typography>
                     </CardContent>
                 </Card>
